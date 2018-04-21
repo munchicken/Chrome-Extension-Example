@@ -235,6 +235,12 @@ Popup = {
           
     <!-- My test code -->
     document.getElementById("munchicken_test").innerHTML =  me.workspaces[0].name;
+    // next add a get task function to server_model
+    // use picked workspace
+    // pick a random task from that workspace
+    // use server_model task url function to get a task url
+    // either show task url or go there
+    // or make a button that takes you there
     <!-- End my test code -->
 
         // Set initial UI state
