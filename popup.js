@@ -34,6 +34,10 @@ Popup = {
     var me = this;
 
     me.is_external = ('' + window.location.search).indexOf("external=true") !== -1;
+      
+    <!-- My test code -->
+      document.getElementById("munchicken_test").innerHTML = "whatever";
+    <!-- End my test code -->
 
     // Our default error handler.
     Asana.ServerModel.onError = function(response) {
