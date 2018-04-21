@@ -34,10 +34,6 @@ Popup = {
     var me = this;
 
     me.is_external = ('' + window.location.search).indexOf("external=true") !== -1;
-      
-    <!-- My test code -->
-      document.getElementById("munchicken_test").innerHTML = "whatever";
-    <!-- End my test code -->
 
     // Our default error handler.
     Asana.ServerModel.onError = function(response) {
@@ -236,6 +232,10 @@ Popup = {
           }
           me.onWorkspaceChanged();
         });
+          
+    <!-- My test code -->
+    document.getElementById("munchicken_test").innerHTML =  me.workspaces[0].name;
+    <!-- End my test code -->
 
         // Set initial UI state
         me.resetFields();
@@ -443,7 +443,7 @@ Popup = {
 
   lastInput: function() {
     return $("#add_button");
-  }
+  } 
 };
 
 /**
