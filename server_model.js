@@ -86,6 +86,22 @@ Asana.ServerModel = {
           self._makeCallback(response, callback, errback);
         }, options);
   },
+    
+    //-- My added task function --
+    /**
+   * Requests the set of workspaces the logged-in user is in.
+   *
+   * @param callback {Function(workspaces)} Callback on success.
+   *     workspaces {dict[]}
+   */
+  tasks: function(workspace_id,callback, errback, options) {
+    var self = this;
+    Asana.ApiBridge.request("GET", "/tasks", {workspace: workspace_id, assignee: "me"},
+        function(response) {
+          self._makeCallback(response, callback, errback);
+        }, options);
+  },
+    //-- End my added task function --
 
   /**
    * Requests the set of users in a workspace.

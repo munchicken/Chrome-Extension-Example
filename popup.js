@@ -26,6 +26,7 @@ Popup = {
   workspaces: null,
   users: null,
   user_id: null,
+    tasks: null,  //I added this
   
   // Typeahead ui element
   typeahead: null,
@@ -233,15 +234,7 @@ Popup = {
           me.onWorkspaceChanged();
         });
           
-    <!-- My test code -->
-    document.getElementById("munchicken_test").innerHTML =  me.workspaces[0].name;
-    // next add a get task function to server_model
-    // use picked workspace
-    // pick a random task from that workspace
-    // use server_model task url function to get a task url
-    // either show task url or go there
-    // or make a button that takes you there
-    <!-- End my test code -->
+          me.getTasks();
 
         // Set initial UI state
         me.resetFields();
@@ -258,10 +251,58 @@ Popup = {
       });
     });
   },
+    
+    getTasks:  function() {
+       me = this;
+        Asana.ServerModel.tasks(me.selectedWorkspaceId(),function(tasks) {
+            me.tasts = null;
+            me.tasks = tasks;
+            //document.getElementById("munchicken_test").innerHTML =  tasks[Math.floor(Math.random()*tasks.length)].name;
+            console.log("Default Workspace ID: " + me.selectedWorkspaceId());
+            console.log(tasks[0]);
+        });
+    },
 
   /**
    * @param enabled {Boolean} True iff the add button should be clickable.
    */
+  setPickEnabled: function(enabled) {
+    var me = this;
+    var button = $("#pick_button");
+    if (enabled) {
+      // Update appearance and add handlers.
+      button.removeClass("is-disabled");
+      button.unbind("click");
+      button.unbind("keydown");
+      button.click(function() {
+         Asana.ServerModel.taskViewUrl(me.tasks[Math.floor(Math.random()*me.tasks.length)],function(myurl){
+                chrome.tabs.update({
+                    url: myurl
+            });
+             console.log(me.tasks[Math.floor(Math.random()*me.tasks.length)]);
+             console.log("Picking another random task with ID:  " + me.tasks[Math.floor(Math.random()*me.tasks.length)].id);
+             console.log("URL created:  " + myurl);
+             return false;
+        });
+        return false;
+      });
+      button.keydown(function(e) {
+        if (e.keyCode === 13) {
+          Asana.ServerModel.taskViewUrl(me.tasks[Math.floor(Math.random()*me.tasks.length)],function(myurl){
+                chrome.tabs.update({
+                    url: myurl
+                });
+              return false;
+            });
+        };
+      });
+    } else {
+      // Update appearance and remove handlers.
+      button.addClass("is-disabled");
+      button.unbind("click");
+      button.unbind("keydown");
+    }
+  },
   setAddEnabled: function(enabled) {
     var me = this;
     var button = $("#add_button");
@@ -330,6 +371,8 @@ Popup = {
     Asana.ServerModel.saveOptions(me.options, function() {});
 
     me.setAddEnabled(true);
+    me.setPickEnabled(true);
+    me.getTasks();
   },
 
   /**
