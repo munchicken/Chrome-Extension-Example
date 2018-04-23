@@ -642,3 +642,25 @@ input:focus, textarea:focus {
   border: 1px solid #74C1ED;
   box-shadow: 0px 0px 5px 1px rgba(31, 141, 214, 0.3);
 }
+
+.name {
+  width: 100%;
+  color: #1AAFD0;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 12px 16px;
+  font-size: 14px;
+  line-height: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: thin dotted grey;
+}
+
+.odd {
+    color: #1AAFD0;
+}
+
+.even, .even:link, .even:visited {
+    color: #fa617d;
+}

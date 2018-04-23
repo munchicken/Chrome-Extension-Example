@@ -835,6 +835,11 @@ Asana.update(UserTypeahead.prototype, {
 
 });
 
+$("#my_link").click(function() {
+	chrome.tabs.update({
+        url: "http://www.munchicken.com/software/"
+    });
+});
 
 $(window).load(function() {
   Popup.onLoad();
