@@ -234,7 +234,6 @@ Popup = {
           me.onWorkspaceChanged();
         });
           
-          me.getTasks();
 
         // Set initial UI state
         me.resetFields();
@@ -252,16 +251,7 @@ Popup = {
     });
   },
     
-    getTasks:  function() {
-       me = this;
-        Asana.ServerModel.tasks(me.selectedWorkspaceId(),function(tasks) {
-            me.tasts = null;
-            me.tasks = tasks;
-            //document.getElementById("munchicken_test").innerHTML =  tasks[Math.floor(Math.random()*tasks.length)].name;
-            console.log("Default Workspace ID: " + me.selectedWorkspaceId());
-            console.log(tasks[0]);
-        });
-    },
+
 
   /**
    * @param enabled {Boolean} True iff the add button should be clickable.
@@ -280,7 +270,6 @@ Popup = {
                     url: myurl
             });
              console.log(me.tasks[Math.floor(Math.random()*me.tasks.length)]);
-             console.log("Picking another random task with ID:  " + me.tasks[Math.floor(Math.random()*me.tasks.length)].id);
              console.log("URL created:  " + myurl);
              return false;
         });
@@ -430,6 +419,7 @@ Popup = {
           me.showSuccess(task);
           me.resetFields();
           $("#name_input").focus();
+            console.log(me.selectedWorkspaceId());
         },
         function(response) {
           // Failure. :( Show error, but leave form available for retry.
@@ -492,7 +482,19 @@ Popup = {
 
   lastInput: function() {
     return $("#add_button");
-  } 
+  },
+    
+        getTasks:  function() {
+       var me = this;
+        Asana.ServerModel.tasks(me.selectedWorkspaceId(),function(tasks) {
+            me.tasks = null;
+            me.tasks = tasks;
+            //document.getElementById("munchicken_test").innerHTML =  tasks[Math.floor(Math.random()*tasks.length)].name;
+            console.log("Default Workspace ID: " + me.selectedWorkspaceId());
+            console.log(tasks[0]);
+            console.log(me.tasks[0]);
+        },{miss_cache: true});
+    },
 };
 
 /**
