@@ -6,7 +6,7 @@
    "browser_action": {
       "default_icon": "icon48.png",
       "default_popup": "popup.html",
-      "default_title": "Asana"
+      "default_title": "Pick-a-Random-Asana-Task"
    },
    "commands": {
       "_execute_browser_action": {
@@ -16,7 +16,7 @@
       }
    },
    "content_security_policy": "script-src 'self'; object-src 'self'",
-   "description": "Quickly add tasks to Asana from any web page.",
+   "description": "Picks a random task from a selected Asana workspace.",
    "icons": {
       "128": "icon128.png",
       "16": "icon16.png",
@@ -26,9 +26,9 @@
    "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4sI7XDofuEsAUZM1sM8mT0DSprcta07RgHfxG1PDJm5WJv5WmF6STIyE4xkSZY42UI+Ogei/YZeG4F7VWiB5k5pMLbktMoKE8GZRzD5/Jpyx9W7F7auYct1Pqf35wdC1atN7bVwxnsAK/KNXQvSI7kW3JUqGGg4wSGW4ADbJaYwIDAQAB",
    "manifest_version": 2,
    "minimum_chrome_version": "25",
-   "name": "Asana Extension for Chrome",
+   "name": "Pick-a-Random-Asana-Task",
    "offline_enabled": false,
    "permissions": [ "activeTab", "cookies", "webRequest", "webRequestBlocking", "*://*.asana.com/*" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.2.1"
+   "version": "1.0"
 }
