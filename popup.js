@@ -484,17 +484,12 @@ Popup = {
     return $("#add_button");
   },
     
-        getTasks:  function() {
-       var me = this;
-        Asana.ServerModel.tasks(me.selectedWorkspaceId(),function(tasks) {
-            me.tasks = null;
-            me.tasks = tasks;
-            //document.getElementById("munchicken_test").innerHTML =  tasks[Math.floor(Math.random()*tasks.length)].name;
-            console.log("Default Workspace ID: " + me.selectedWorkspaceId());
-            console.log(tasks[0]);
-            console.log(me.tasks[0]);
-        },{miss_cache: true});
-    },
+  getTasks:  function() {
+    var me = this;
+    Asana.ServerModel.tasks(me.selectedWorkspaceId(),function(tasks) {
+        me.tasks = tasks;
+    },{miss_cache: true});
+  },
 };
 
 /**
