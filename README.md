@@ -8,4 +8,4 @@ Grab it at the Chrome Webstore
 
 By: [Munchicken](http://www.munchicken.com/software/)
 
-<img src="screenshot.png" alt="Screenshot"/>
+1[Screenshot](screenshot.png)
