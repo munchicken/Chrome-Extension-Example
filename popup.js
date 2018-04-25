@@ -26,6 +26,7 @@ Popup = {
   workspaces: null,
   users: null,
   user_id: null,
+    tasks: null,  //I added this
   
   // Typeahead ui element
   typeahead: null,
@@ -232,6 +233,7 @@ Popup = {
           }
           me.onWorkspaceChanged();
         });
+          
 
         // Set initial UI state
         me.resetFields();
@@ -248,10 +250,48 @@ Popup = {
       });
     });
   },
+    
+
 
   /**
    * @param enabled {Boolean} True iff the add button should be clickable.
    */
+  setPickEnabled: function(enabled) {
+    var me = this;
+    var button = $("#pick_button");
+    if (enabled) {
+      // Update appearance and add handlers.
+      button.removeClass("is-disabled");
+      button.unbind("click");
+      button.unbind("keydown");
+      button.click(function() {
+         Asana.ServerModel.taskViewUrl(me.tasks[Math.floor(Math.random()*me.tasks.length)],function(myurl){
+                chrome.tabs.update({
+                    url: myurl
+            });
+             console.log(me.tasks[Math.floor(Math.random()*me.tasks.length)]);
+             console.log("URL created:  " + myurl);
+             return false;
+        });
+        return false;
+      });
+      button.keydown(function(e) {
+        if (e.keyCode === 13) {
+          Asana.ServerModel.taskViewUrl(me.tasks[Math.floor(Math.random()*me.tasks.length)],function(myurl){
+                chrome.tabs.update({
+                    url: myurl
+                });
+              return false;
+            });
+        };
+      });
+    } else {
+      // Update appearance and remove handlers.
+      button.addClass("is-disabled");
+      button.unbind("click");
+      button.unbind("keydown");
+    }
+  },
   setAddEnabled: function(enabled) {
     var me = this;
     var button = $("#add_button");
@@ -320,6 +360,8 @@ Popup = {
     Asana.ServerModel.saveOptions(me.options, function() {});
 
     me.setAddEnabled(true);
+    me.setPickEnabled(true);
+    me.getTasks();
   },
 
   /**
@@ -377,6 +419,7 @@ Popup = {
           me.showSuccess(task);
           me.resetFields();
           $("#name_input").focus();
+            console.log(me.selectedWorkspaceId());
         },
         function(response) {
           // Failure. :( Show error, but leave form available for retry.
@@ -439,7 +482,14 @@ Popup = {
 
   lastInput: function() {
     return $("#add_button");
-  }
+  },
+    
+  getTasks:  function() {
+    var me = this;
+    Asana.ServerModel.tasks(me.selectedWorkspaceId(),function(tasks) {
+        me.tasks = tasks;
+    },{miss_cache: true});
+  },
 };
 
 /**
@@ -780,6 +830,11 @@ Asana.update(UserTypeahead.prototype, {
 
 });
 
+$("#my_link").click(function() {
+	chrome.tabs.update({
+        url: "http://www.munchicken.com/software/"
+    });
+});
 
 $(window).load(function() {
   Popup.onLoad();

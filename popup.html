@@ -15,7 +15,7 @@ http://stackoverflow.com/questions/9498685/resize-popup-html-in-chrome-extension
   <script type="text/javascript" src="server_model.js"></script>
   <link rel="stylesheet" href="popup.css"/>
   <title>
-    Asana Quick Add
+    Pick Random Asana Task
   </title>
 </head>
 
@@ -28,7 +28,7 @@ http://stackoverflow.com/questions/9498685/resize-popup-html-in-chrome-extension
       </div>
       <div class="middle-column">
         <span class="banner-add">
-          Add to
+          Pick from
           <span id="workspace"></span>
           <div id="workspace_select_container">
             <select id="workspace_select"><option>Loading...</option></select>
@@ -42,6 +42,7 @@ http://stackoverflow.com/questions/9498685/resize-popup-html-in-chrome-extension
         <a id="close_popup" class="sprite close-x" tabindex="-1"></a>
       </div>
     </div>
+      <!-- Remove unnecessary items
     <div class="name-row">
       <div class="left-column">
         <span class="icon-checkbox sprite"></span>
@@ -90,7 +91,8 @@ http://stackoverflow.com/questions/9498685/resize-popup-html-in-chrome-extension
         </div>
       </div>
     </div>
-
+--> 
+      
     <div class="footer">
       <div id="error" class="footer-status" style="display:none">
         <span class="error-message">
@@ -127,7 +129,21 @@ http://stackoverflow.com/questions/9498685/resize-popup-html-in-chrome-extension
       <span id="signup_button" class="buttonView buttonView--large"><span class="new-button-text">Sign Up</span></span>
       <span id="login_button" class="buttonView buttonView--primary buttonView--large"><span class="new-button-text">Log In</span></span>
     </div>
-  </div>
+  </div>   
+
+<!-- My new code -->
+    <div class="name">
+        <span class="odd">Pick-</span><span class="even">a</span><span class="odd">-Random-</span><span class="even">Asana</span><span class="odd">-Task - By: </span><a id="my_link" class="even" href="http://www.munchicken.com/software/">Munchicken</a>
+    </div>
+    <div class="buttons">
+      <div class="left-column"></div>
+      <div class="middle-column">
+        <div id="pick_button" tabindex="0" class="buttonView buttonView--primary buttonView--large is-disabled">
+          <span class="new-button-text">Pick Random Task</span>
+        </div>
+      </div>
+    </div>
+<!-- End of my new code -->
 
 </body>
 

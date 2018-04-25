@@ -74,6 +74,8 @@ Asana.ApiBridge = {
         params: params,
         options: options || {}
       }, callback);
+        console.log(params);
+        console.log (options);
       return;
     }
 
