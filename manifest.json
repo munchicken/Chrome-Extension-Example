@@ -23,7 +23,6 @@
       "48": "icon48.png"
    },
    "incognito": "split",
-   "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC4sI7XDofuEsAUZM1sM8mT0DSprcta07RgHfxG1PDJm5WJv5WmF6STIyE4xkSZY42UI+Ogei/YZeG4F7VWiB5k5pMLbktMoKE8GZRzD5/Jpyx9W7F7auYct1Pqf35wdC1atN7bVwxnsAK/KNXQvSI7kW3JUqGGg4wSGW4ADbJaYwIDAQAB",
    "manifest_version": 2,
    "minimum_chrome_version": "25",
    "name": "Pick-a-Random-Asana-Task",
