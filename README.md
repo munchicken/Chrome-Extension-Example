@@ -7,3 +7,5 @@ Chrome browser extension that allows the user to pick a random task from a selec
 Grab it at the Chrome Webstore
 
 By: [Munchicken](http://www.munchicken.com/software/)
+
+<img src="/screenshot.png" alt="Screenshot"/>
